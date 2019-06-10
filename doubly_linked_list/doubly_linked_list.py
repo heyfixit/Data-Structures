@@ -17,7 +17,7 @@ class ListNode:
 
   """Wrap the given value in a ListNode and insert it
   before this node. Note that this node could already
-  have a previous node it is point to."""
+  have a previous node it is pointed to."""
   def insert_before(self, value):
     current_prev = self.prev
     self.prev = ListNode(value, current_prev, self)
@@ -63,6 +63,6 @@ class DoublyLinkedList:
 
   def delete(self, node):
     pass
-    
+
   def get_max(self):
     pass
