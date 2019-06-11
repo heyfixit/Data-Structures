@@ -21,10 +21,14 @@ class Heap:
     self._bubble_up(current_index)
 
   def delete(self):
-    pass
+    deleted_item = self.storage.pop(0)
+    for i in range(len(self.storage) - 1):
+      self._bubble_up(i)
+
+    return deleted_item
 
   def get_max(self):
-    pass
+    return self.storage[0]
 
   def get_size(self):
     pass
