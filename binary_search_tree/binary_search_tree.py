@@ -26,7 +26,20 @@ class BinarySearchTree:
           break
 
   def contains(self, target):
-    pass
+    current_branch = self
+
+    # traverse each branch until we hit the target or None
+    while current_branch and current_branch.value != target:
+      if target < current_branch.value:
+        current_branch = current_branch.left
+      else:
+        current_branch = current_branch.right
+
+    if current_branch:
+      return True
+
+    return False
+
 
   def get_max(self):
     pass
