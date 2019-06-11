@@ -17,6 +17,20 @@ class Heap:
     if current_index == 0:
       return
 
+    # bubble the newly added element up
+    self._bubble_up(current_index)
+
+  def delete(self):
+    pass
+
+  def get_max(self):
+    pass
+
+  def get_size(self):
+    pass
+
+  def _bubble_up(self, index):
+    current_index = index
     # loop through the parents, swapping them if they're less than current child
     while True:
       parent_index = (current_index - 1) // 2
@@ -34,18 +48,6 @@ class Heap:
 
       # otherwise set the current_index to the parent_index and go again
       current_index = parent_index
-
-  def delete(self):
-    pass
-
-  def get_max(self):
-    pass
-
-  def get_size(self):
-    pass
-
-  def _bubble_up(self, index):
-    pass
 
   def _sift_down(self, index):
     pass
