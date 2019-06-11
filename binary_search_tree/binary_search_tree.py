@@ -42,7 +42,14 @@ class BinarySearchTree:
 
 
   def get_max(self):
-    pass
+    # seems like for this one, we take all the right turns
+    # until we run out
+
+    current_branch = self
+    while current_branch.right:
+      current_branch = current_branch.right
+
+    return current_branch.value
 
   def for_each(self, cb):
     pass
