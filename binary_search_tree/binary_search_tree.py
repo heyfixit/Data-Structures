@@ -52,4 +52,11 @@ class BinarySearchTree:
     return current_branch.value
 
   def for_each(self, cb):
-    pass
+    # call the callback with this value
+    cb(self.value)
+
+    # now call for_each on whichever branches exist
+    if self.left:
+      self.left.for_each(cb)
+    if self.right:
+      self.right.for_each(cb)
