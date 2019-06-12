@@ -100,7 +100,7 @@ class DoublyLinkedList:
 
 
     self.length -= 1
-    self.tail = current_tail.next
+    self.tail = current_tail.prev
     self.tail.prev = None
 
     if self.length == 1:
@@ -109,9 +109,13 @@ class DoublyLinkedList:
     return current_tail.value
 
   def move_to_front(self, node):
-    node.delete()
-    self.length -= 1
-    self.add_to_head(node.value)
+    if self.tail == node:
+      value = self.remove_from_tail()
+      self.add_to_head(value)
+    else:
+      node.delete()
+      self.length -= 1
+      self.add_to_head(node.value)
 
   def move_to_end(self, node):
     if self.head == node:
