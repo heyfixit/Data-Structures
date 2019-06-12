@@ -13,11 +13,9 @@ class Heap:
     current_index = len(self.storage) - 1
 
     self._bubble_up(current_index)
-    # while self._bubble_up(current_index):
-      # current_index = (current_index - 1) // 2
 
   def delete(self):
-    # print("Storage: ", self.storage)
+    # return None if the Heap is empty
     if len(self.storage) == 0:
       return None
 
@@ -30,10 +28,7 @@ class Heap:
     # shuffle the last item to the front
     self.storage.insert(0, self.storage.pop(-1))
 
-    # print("Deleted: ", deleted_item)
-    # print("Sifting")
     self._sift_down(0)
-    # print("Result: ", self.storage)
 
     return deleted_item
 
@@ -70,25 +65,3 @@ class Heap:
       if self.storage[left_index] > self.storage[index]:
         self._bubble_up(left_index)
         self._sift_down(left_index)
-
-# heap = Heap()
-# heap.insert(6)
-# heap.insert(8)
-# heap.insert(10)
-# heap.insert(9)
-# heap.insert(1)
-# heap.insert(9)
-# heap.insert(9)
-# heap.insert(5)
-# heap = Heap()
-# heap.insert(1)
-# heap.insert(10)
-# heap.insert(40)
-# heap.insert(2)
-# heap.insert(11)
-# heap.insert(11)
-# print(heap.storage)
-# heap.delete()
-# # heap.delete()
-# # heap.delete()
-# print(heap.storage)

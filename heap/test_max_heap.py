@@ -73,13 +73,10 @@ class HeapTests(unittest.TestCase):
 
   def test_sift_down_was_called(self):
     self.heap._sift_down = MagicMock()
-    # self.heap.do_something = MagicMock()
-    # self.heap.do_something()
     self.heap.insert(10)
     self.heap.insert(11)
     self.heap.delete()
     self.assertTrue(self.heap._sift_down.called)
-    # self.assertTrue(self.heap.do_something.called)
 
 if __name__ == '__main__':
   unittest.main()
