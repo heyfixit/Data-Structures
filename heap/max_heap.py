@@ -12,18 +12,28 @@ class Heap:
     self.storage.append(value)
     current_index = len(self.storage) - 1
 
-    # if we're at the first index, return
-    # we only have one element
-    if current_index == 0:
-      return
-
-    # bubble the newly added element up
     self._bubble_up(current_index)
+    # while self._bubble_up(current_index):
+      # current_index = (current_index - 1) // 2
 
   def delete(self):
+    # print("Storage: ", self.storage)
+    if len(self.storage) == 0:
+      return None
+
     deleted_item = self.storage.pop(0)
-    for i in range(len(self.storage) - 1):
-      self._bubble_up(i)
+
+    # do nothing if that was the last item
+    if len(self.storage) == 0:
+      return deleted_item
+
+    # shuffle the last item to the front
+    self.storage.insert(0, self.storage.pop(-1))
+
+    # print("Deleted: ", deleted_item)
+    # print("Sifting")
+    self._sift_down(0)
+    # print("Result: ", self.storage)
 
     return deleted_item
 
@@ -31,27 +41,54 @@ class Heap:
     return self.storage[0]
 
   def get_size(self):
-    pass
+    return len(self.storage)
 
   def _bubble_up(self, index):
-    current_index = index
-    # loop through the parents, swapping them if they're less than current child
-    while True:
-      parent_index = (current_index - 1) // 2
-
-      # if the parent index is < 0, we've hit the top
-      if parent_index < 0:
-        break
-
-      if self.storage[current_index] > self.storage[parent_index]:
-        # swap
-        self.storage[current_index], self.storage[parent_index] = self.storage[parent_index], self.storage[current_index]
-      else:
-        # we're in the right spot
-        break
-
-      # otherwise set the current_index to the parent_index and go again
-      current_index = parent_index
+    parent_index = (index - 1) // 2
+    if(parent_index >= 0
+    and self.storage[parent_index] < self.storage[index]):
+      self.storage[index], self.storage[parent_index] = self.storage[parent_index], self.storage[index]
+      self._bubble_up(parent_index)
 
   def _sift_down(self, index):
-    pass
+    left_index = 2 * index + 1
+    right_index = 2 * index + 2
+
+    # always swap with the smallest child
+    if(right_index < self.get_size()):
+      # then we have 2 children
+      if self.storage[left_index] >= self.storage[right_index]:
+        if self.storage[left_index] > self.storage[index]:
+          self._bubble_up(left_index)
+          self._sift_down(left_index)
+      elif self.storage[right_index] > self.storage[left_index]:
+        if self.storage[right_index] > self.storage[index]:
+          self._bubble_up(right_index)
+          self._sift_down(right_index)
+    elif(left_index < self.get_size()):
+      # we have one child
+      if self.storage[left_index] > self.storage[index]:
+        self._bubble_up(left_index)
+        self._sift_down(left_index)
+
+# heap = Heap()
+# heap.insert(6)
+# heap.insert(8)
+# heap.insert(10)
+# heap.insert(9)
+# heap.insert(1)
+# heap.insert(9)
+# heap.insert(9)
+# heap.insert(5)
+# heap = Heap()
+# heap.insert(1)
+# heap.insert(10)
+# heap.insert(40)
+# heap.insert(2)
+# heap.insert(11)
+# heap.insert(11)
+# print(heap.storage)
+# heap.delete()
+# # heap.delete()
+# # heap.delete()
+# print(heap.storage)

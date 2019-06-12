@@ -14,7 +14,7 @@ class HeapTests(unittest.TestCase):
     self.heap.insert(1)
     self.heap.insert(9)
     self.heap.insert(9)
-    self.heap.insert(5) 
+    self.heap.insert(5)
     self.assertEqual(self.heap.storage, [10, 9, 9, 6, 1, 8, 9, 5])
 
   def test_get_max_works(self):
@@ -73,10 +73,13 @@ class HeapTests(unittest.TestCase):
 
   def test_sift_down_was_called(self):
     self.heap._sift_down = MagicMock()
+    # self.heap.do_something = MagicMock()
+    # self.heap.do_something()
     self.heap.insert(10)
     self.heap.insert(11)
     self.heap.delete()
     self.assertTrue(self.heap._sift_down.called)
+    # self.assertTrue(self.heap.do_something.called)
 
 if __name__ == '__main__':
   unittest.main()
