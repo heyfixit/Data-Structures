@@ -7,10 +7,12 @@ class Queue:
 
   def enqueue(self, item):
     self.storage.append(item)
+    self.size += 1
 
   def dequeue(self):
     if self.len() > 0:
+      self.size -= 1
       return self.storage.pop(0)
 
   def len(self):
-    return len(self.storage)
+    return self.size
